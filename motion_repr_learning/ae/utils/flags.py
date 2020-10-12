@@ -9,7 +9,7 @@ import tensorflow as tf
 
 # Modify this function to set your home directory for this repo
 def home_out(path):
-    return pjoin(os.environ['HOME'], 'tmp', 'MoCap', path)
+    return pjoin(os.environ['HOME'], 'Desktop', 'Thesis', 'home_out', path)
 
 flags = tf.app.flags
 FLAGS = flags.FLAGS
