@@ -454,7 +454,7 @@ def create_test_sequences(nodes, dataset):
     
     if MULTIPROCESSING:
         import multiprocessing
-
+        processes = []
         for i in range(len(DATA_FILE)):
             p = multiprocessing.Process(target=multiprocessing_func, args=(DATA_FILE, dataset, nodes))
             processes.append(p)
