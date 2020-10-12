@@ -23,11 +23,11 @@ cd ../motion_repr_learning/ae/
 mkdir -p $data_dir/325
 
 # Learn dataset encoding
-CUDA_VISIBLE_DEVICES=$gpu python learn_dataset_encoding.py $data_dir -chkpt_dir='/home/taras/tmp/MoCap/'$dim -layer1_width=$dim
+CUDA_VISIBLE_DEVICES=$gpu python learn_dataset_encoding.py $data_dir -chkpt_dir='/homes/sfaggi/Desktop/Thesis/Speech_driven_gesture_generation_with_autoencoder/chkpt'$dim -layer1_width=$dim
 
 #Encode dataset
 echo "Encoding the dataset"
-CUDA_VISIBLE_DEVICES=$gpu python encode_dataset.py $data_dir -chkpt_dir='/home/taras/tmp/MoCap/'$dim -restore=True -pretrain=False -layer1_width=$dim
+CUDA_VISIBLE_DEVICES=$gpu python encode_dataset.py $data_dir -chkpt_dir='/homes/sfaggi/Desktop/Thesis/Speech_driven_gesture_generation_with_autoencoder/chkpt'$dim -restore=True -pretrain=False -layer1_width=$dim
 
 # Copy input data
 Encoding=$(date +%s)
