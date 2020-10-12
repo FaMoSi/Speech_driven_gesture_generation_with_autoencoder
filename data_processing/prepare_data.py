@@ -41,7 +41,7 @@ def _download_datasets(data_dir):
             shutil.copy(original_file_path, target_file_path)
         else:
             print(original_file_path + " does not exist")
-        filename = "gesture" + str(i) + ".bvh"
+        filename = "gesture" + str(i) + ".npz"
         original_file_path = path.join("dataset/motion/" + filename)
         if os.path.exists(original_file_path):
             target_file_path = path.join(data_dir + "train/labels/" + filename)
@@ -60,7 +60,7 @@ def _download_datasets(data_dir):
             shutil.copy(original_file_path, target_file_path)
         else:
             print(original_file_path + " does not exist")
-        filename = "gesture" + str(i) + ".bvh"
+        filename = "gesture" + str(i) + ".npz"
         original_file_path = path.join("dataset/motion/" + filename)
         if os.path.exists(original_file_path):
             target_file_path = path.join(data_dir + "test/labels/" + filename)
@@ -79,7 +79,7 @@ def _download_datasets(data_dir):
             shutil.copy(original_file_path, target_file_path)
         else:
             print(original_file_path + " does not exist")
-        filename = "gesture" + str(i) + ".bvh"
+        filename = "gesture" + str(i) + ".npz"
         original_file_path = path.join("dataset/motion/" + filename)
         if os.path.exists(original_file_path):
             target_file_path = path.join(data_dir + "dev/labels/" + filename)
@@ -137,7 +137,7 @@ def _files_to_pandas_dataframe(extracted_dir, set_name, idx_range):
         except OSError:
             continue
         try:
-            label_file = path.abspath(path.join(extracted_dir, set_name, "labels", "gesture" + str(idx) + ".bvh"))
+            label_file = path.abspath(path.join(extracted_dir, set_name, "labels", "gesture" + str(idx) + ".npz"))
         except OSError:
             continue
         try:

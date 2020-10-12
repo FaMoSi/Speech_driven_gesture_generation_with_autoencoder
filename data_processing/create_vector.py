@@ -193,14 +193,14 @@ def create_vectors(audio_filename, gesture_filename, nodes):
 
     # Step 2: Read motions
 
-    motion_format = "bvh"
+    motion_format = "npz"
 
     if motion_format == "npz":
         ges_str = np.load(gesture_filename)
         output_vectors = ges_str['clips']
 
         # Subsample motion (from 60 fsp to 20 fsp)
-        output_vectors = output_vectors[0::3]
+        # output_vectors = output_vectors[0::3]
 
 
     elif motion_format == "bvh":
@@ -483,8 +483,8 @@ if __name__ == "__main__":
     f = open('hierarchy.txt', 'r')
     hierarchy = f.readlines()
     f.close()
-    nodes = create_hierarchy_nodes(hierarchy)
-
+    # nodes = create_hierarchy_nodes(hierarchy)
+    nodes = []
     create_test_sequences(nodes, 'test')
     create('test', nodes)
     create('dev', nodes)
