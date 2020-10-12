@@ -481,7 +481,7 @@ def create_test_sequences(nodes, dataset):
 def multiprocessing_func(data_file, dataset, nodes):
     input_vectors, output_vectors = create_vectors(DATA_FILE['wav_filename'][i], DATA_FILE['bvh_filename'][i], nodes)
 
-    array = DATA_FILE['wav_filename'][i].split("/")
+    array = data_file['wav_filename'][i].split("/")
     name = array[len(array)-1].split(".")[0]
 
     X = input_vectors
