@@ -450,7 +450,7 @@ def create_test_sequences(nodes, dataset):
     """
     DATA_FILE = pd.read_csv(DATA_DIR + '/gg-'+dataset+'.csv')
 
-    MULTIPROCESSING = False
+    MULTIPROCESSING = True
     
     if MULTIPROCESSING:
         import multiprocessing
