@@ -5,7 +5,7 @@
 # You might need to customize it using config.txt file
 
 # (Optional) Activate your virtual env
-source activate CondaEnvPy3Tf
+# source activate CondaEnvPy3Tf
 
 # Read the parameters for the scripts
 source config.txt
