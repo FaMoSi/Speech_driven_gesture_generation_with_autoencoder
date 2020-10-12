@@ -13,9 +13,9 @@ from os import path
 
 sys.path.insert(1, os.path.join(sys.path[0], '..'))
 
-NUM_OF_TEST = 90
-FIRST_DATA_ID = 20
-LAST_DATA_ID = 1182
+NUM_OF_TEST = 8
+FIRST_DATA_ID = 1
+LAST_DATA_ID = 33
 
 AUGMENT = True
 
