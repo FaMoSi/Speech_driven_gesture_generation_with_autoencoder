@@ -450,21 +450,48 @@ def create_test_sequences(nodes, dataset):
     """
     DATA_FILE = pd.read_csv(DATA_DIR + '/gg-'+dataset+'.csv')
 
-    for i in range(len(DATA_FILE)):
-        input_vectors, output_vectors = create_vectors(DATA_FILE['wav_filename'][i], DATA_FILE['bvh_filename'][i], nodes)
+    MULTIPROCESSING = False
+    
+    if MULTIPROCESSING:
+        import multiprocessing
 
-        array = DATA_FILE['wav_filename'][i].split("/")
-        name = array[len(array)-1].split(".")[0]
+        for i in range(len(DATA_FILE)):
+            p = multiprocessing.Process(target=multiprocessing_func, args=(DATA_FILE, dataset, nodes))
+            processes.append(p)
+            p.start()
+        
+        for process in processes:
+            process.join()
+    else:
+        for i in range(len(DATA_FILE)):
+            input_vectors, output_vectors = create_vectors(DATA_FILE['wav_filename'][i], DATA_FILE['bvh_filename'][i], nodes)
 
-        X = input_vectors
+            array = DATA_FILE['wav_filename'][i].split("/")
+            name = array[len(array)-1].split(".")[0]
 
-        if not os.path.isdir(DATA_DIR + '/'+dataset+'_inputs'):
-            os.makedirs(DATA_DIR +  '/'+dataset+'_inputs')
+            X = input_vectors
 
-        x_file_name = DATA_DIR + '/'+dataset+'_inputs/X_test_' + name + '.npy'
+            if not os.path.isdir(DATA_DIR + '/'+dataset+'_inputs'):
+                os.makedirs(DATA_DIR +  '/'+dataset+'_inputs')
 
-        np.save(x_file_name, X)
+            x_file_name = DATA_DIR + '/'+dataset+'_inputs/X_test_' + name + '.npy'
 
+            np.save(x_file_name, X)
+
+def multiprocessing_func(data_file, dataset, nodes):
+    input_vectors, output_vectors = create_vectors(DATA_FILE['wav_filename'][i], DATA_FILE['bvh_filename'][i], nodes)
+
+    array = DATA_FILE['wav_filename'][i].split("/")
+    name = array[len(array)-1].split(".")[0]
+
+    X = input_vectors
+
+    if not os.path.isdir(DATA_DIR + '/'+dataset+'_inputs'):
+        os.makedirs(DATA_DIR +  '/'+dataset+'_inputs')
+
+    x_file_name = DATA_DIR + '/'+dataset+'_inputs/X_test_' + name + '.npy'
+
+    np.save(x_file_name, X)
 
 if __name__ == "__main__":
 
