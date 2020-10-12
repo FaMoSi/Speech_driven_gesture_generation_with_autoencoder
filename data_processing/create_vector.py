@@ -479,7 +479,7 @@ def create_test_sequences(nodes, dataset):
             np.save(x_file_name, X)
 
 def multiprocessing_func(data_file, dataset, nodes):
-    input_vectors, output_vectors = create_vectors(DATA_FILE['wav_filename'][i], DATA_FILE['bvh_filename'][i], nodes)
+    input_vectors, output_vectors = create_vectors(data_file['wav_filename'][i], data_file['bvh_filename'][i], nodes)
 
     array = data_file['wav_filename'][i].split("/")
     name = array[len(array)-1].split(".")[0]
