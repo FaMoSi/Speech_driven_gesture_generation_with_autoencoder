@@ -13,7 +13,7 @@ import pyquaternion as pyq
 
 from tools import *
 
-N_OUTPUT = 384 # Number of gesture features (position)
+N_OUTPUT = 45 # Number of gesture features (position)
 WINDOW_LENGTH = 50 # in miliseconds
 FEATURES = "MFCC"
 
