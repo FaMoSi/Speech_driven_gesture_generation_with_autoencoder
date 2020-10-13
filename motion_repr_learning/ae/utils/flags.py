@@ -36,7 +36,7 @@ flags.DEFINE_boolean('evaluate', False, ' Whether we are evaluating the system')
 
 flags.DEFINE_float('dropout', 0.9, 'Probability to keep the neuron on')
 
-flags.DEFINE_integer('batch_size', 128,
+flags.DEFINE_integer('batch_size', 256,
                      'Size of the mini batch')
 
 flags.DEFINE_integer('training_epochs', 20,
