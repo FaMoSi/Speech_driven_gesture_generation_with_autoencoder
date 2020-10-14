@@ -57,9 +57,9 @@ flags.DEFINE_integer('frame_size', 45, 'Dimensionality of the input for a single
 flags.DEFINE_integer("num_hidden_layers", 1, "Number of hidden layers")
 flags.DEFINE_integer("middle_layer", 1, "Number of hidden layers")
 
-flags.DEFINE_integer('layer1_width', 40, 'Number of units in each hidden layer ')
-flags.DEFINE_integer('layer2_width', 38, 'Number of units in each hidden layer ')
-flags.DEFINE_integer('layer3_width', 40, 'Number of units in each hidden layer ')
+flags.DEFINE_integer('layer1_width', 36, 'Number of units in each hidden layer ')
+flags.DEFINE_integer('layer2_width', 30, 'Number of units in each hidden layer ')
+flags.DEFINE_integer('layer3_width', 36, 'Number of units in each hidden layer ')
 
 #                           Constants
 
