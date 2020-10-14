@@ -21,7 +21,7 @@ FLAGS = flags.FLAGS
 flags.DEFINE_integer('chunk_length', 1, 'Length of the chunks, for the data processing.')
 
 #                               Flags about training
-flags.DEFINE_float('learning_rate', 0.0001,
+flags.DEFINE_float('learning_rate', 0.001,
                    'learning rate for training .')
 flags.DEFINE_float('pretraining_learning_rate', 0.001 ,
                    'learning rate for training .')
