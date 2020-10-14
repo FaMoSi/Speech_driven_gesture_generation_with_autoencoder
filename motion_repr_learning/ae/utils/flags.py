@@ -21,12 +21,12 @@ FLAGS = flags.FLAGS
 flags.DEFINE_integer('chunk_length', 1, 'Length of the chunks, for the data processing.')
 
 #                               Flags about training
-flags.DEFINE_float('learning_rate', 0.001,
+flags.DEFINE_float('learning_rate', 0.0001,
                    'learning rate for training .')
 flags.DEFINE_float('pretraining_learning_rate', 0.001 ,
                    'learning rate for training .')
 
-flags.DEFINE_float('variance_of_noise', 0.2, 'Coefficient for the gaussian noise '
+flags.DEFINE_float('variance_of_noise', 0.02, 'Coefficient for the gaussian noise '
                                               'added to every point in input during the training')
 
 flags.DEFINE_boolean('pretrain', False,' Whether we pretrain the model in a layerwise way')
@@ -36,7 +36,7 @@ flags.DEFINE_boolean('evaluate', False, ' Whether we are evaluating the system')
 
 flags.DEFINE_float('dropout', 0.9, 'Probability to keep the neuron on')
 
-flags.DEFINE_integer('batch_size', 128,
+flags.DEFINE_integer('batch_size', 256,
                      'Size of the mini batch')
 
 flags.DEFINE_integer('training_epochs', 20,
