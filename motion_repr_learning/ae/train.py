@@ -88,7 +88,7 @@ def learning(data, data_info, just_restore=False):
 
         # Start a session
         sess = tf.Session(config=config)
-
+        debug=True
         if debug:
             sess = tf_debug.TensorBoardDebugWrapperSession(sess, "taras-All-Series:6064")
 
