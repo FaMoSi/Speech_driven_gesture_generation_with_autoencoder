@@ -26,7 +26,7 @@ flags.DEFINE_float('learning_rate', 0.0001,
 flags.DEFINE_float('pretraining_learning_rate', 0.001 ,
                    'learning rate for training .')
 
-flags.DEFINE_float('variance_of_noise', 0.05, 'Coefficient for the gaussian noise '
+flags.DEFINE_float('variance_of_noise', 0.1, 'Coefficient for the gaussian noise '
                                               'added to every point in input during the training')
 
 flags.DEFINE_boolean('pretrain', False,' Whether we pretrain the model in a layerwise way')
