@@ -58,7 +58,7 @@ def learning(data, data_info, just_restore=False):
     """
 
     test = True
-    debug = True
+    debug = False
 
     with tf.Graph().as_default():
 
