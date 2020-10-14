@@ -57,7 +57,7 @@ def learning(data, data_info, just_restore=False):
         nn:             Neural Network trained on a data provided
     """
 
-    test = True
+    test = False
     debug = False
 
     with tf.Graph().as_default():
