@@ -57,8 +57,8 @@ def learning(data, data_info, just_restore=False):
         nn:             Neural Network trained on a data provided
     """
 
-    test = False
-    debug = False
+    test = True
+    debug = True
 
     with tf.Graph().as_default():
 
@@ -88,7 +88,7 @@ def learning(data, data_info, just_restore=False):
 
         # Start a session
         sess = tf.Session(config=config)
-        debug=True
+
         if debug:
             sess = tf_debug.TensorBoardDebugWrapperSession(sess, "taras-All-Series:6064")
 
