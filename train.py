@@ -14,6 +14,7 @@ from keras.layers.recurrent import SimpleRNN, LSTM, GRU
 from keras.optimizers import SGD, Adam
 from keras.layers.wrappers import TimeDistributed, Bidirectional
 from keras.layers.normalization import BatchNormalization
+from keras.callbacks import ModelCheckpoint
 
 import matplotlib
 matplotlib.use('Agg')
@@ -109,9 +110,9 @@ def train(model_file):
     optimizer = Adam(lr=0.001, beta_1=0.9, beta_2=0.999)
     model.compile(loss='mean_squared_error', optimizer=optimizer)
 
-    hist = model.fit(X_train, Y_train, batch_size=BATCH_SIZE, epochs=EPOCHS, validation_data=(X_validation, Y_validation))
-     
-    model.save(model_file)
+    checkpoint = ModelCheckpoint(filepath, monitor='loss', verbose=1, save_best_only=True)
+    callbacks_list = [checkpoint]
+    hist = model.fit(X_train, Y_train, batch_size=BATCH_SIZE, epochs=EPOCHS, validation_data=(X_validation, Y_validation), callbacks=callbacks_list)
 
     # Save convergence results into an image
     pyplot.plot(hist.history['loss'], linewidth=3, label='train')
