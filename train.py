@@ -110,7 +110,7 @@ def train(model_file):
     optimizer = Adam(lr=0.001, beta_1=0.9, beta_2=0.999)
     model.compile(loss='mean_squared_error', optimizer=optimizer)
 
-    checkpoint = ModelCheckpoint(filepath, monitor='loss', verbose=1, save_best_only=True)
+    checkpoint = ModelCheckpoint(model_file, monitor='loss', verbose=1, save_best_only=True)
     callbacks_list = [checkpoint]
     hist = model.fit(X_train, Y_train, batch_size=BATCH_SIZE, epochs=EPOCHS, validation_data=(X_validation, Y_validation), callbacks=callbacks_list)
 
