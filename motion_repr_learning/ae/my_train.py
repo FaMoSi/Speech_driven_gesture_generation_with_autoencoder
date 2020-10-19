@@ -4,6 +4,12 @@ from keras.callbacks import TensorBoard
 from keras import backend as K
 import utils.utils as ut
 
+# Get the data
+DATA_DIR = 'data_dir/'
+train_normalized_data, train_data, test_normalized_data, test_data, dev_normalized_data, \
+max_val, mean_pose = ut.prepare_motion_data(DATA_DIR)
+
+
 original_dim = 45
 intermediate_dim = 40
 latent_dim = 36
@@ -34,21 +40,19 @@ decoder = keras.Model(latent_inputs, outputs, name='decoder')
 outputs = decoder(encoder(inputs)[2])
 vae = keras.Model(inputs, outputs, name='vae_mlp')
 
-reconstruction_loss = keras.losses.mse(inputs, outputs)
-reconstruction_loss *= original_dim
-kl_loss = 1 + z_log_sigma - K.square(z_mean) - K.exp(z_log_sigma)
-kl_loss = K.sum(kl_loss, axis=-1)
-kl_loss *= -0.5
-vae_loss = K.mean(reconstruction_loss + kl_loss)
+# Compute VAE loss
+def my_vae_loss(y_true, y_pred):
+    reconstruction_loss = keras.losses.mse(inputs, outputs)
+    reconstruction_loss *= original_dim
+    kl_loss = 1 + z_log_sigma - K.square(z_mean) - K.exp(z_log_sigma)
+    kl_loss = K.sum(kl_loss, axis=-1)
+    kl_loss *= -0.5
+    vae_loss = K.mean(reconstruction_loss + kl_loss)
+
 vae.add_loss(vae_loss)
 vae.compile(optimizer='adam')
 
 vae.summary()
-
-# Get the data
-DATA_DIR = 'data_dir/'
-train_normalized_data, train_data, test_normalized_data, test_data, dev_normalized_data, \
-max_val, mean_pose = ut.prepare_motion_data(DATA_DIR)
 
 vae.fit(train_data, train_data,
         epochs=20,
