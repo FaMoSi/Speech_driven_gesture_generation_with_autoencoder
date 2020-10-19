@@ -1,4 +1,4 @@
-import Keras
+import keras
 from keras import layers
 from keras.callbacks import TensorBoard
 from keras import backend as K
