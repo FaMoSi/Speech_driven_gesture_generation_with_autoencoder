@@ -4,15 +4,6 @@ from keras.callbacks import TensorBoard
 from keras import backend as K
 import utils.utils as ut
 
-
-def sampling(args):
-    z_mean, z_log_sigma = args
-    epsilon = K.random_normal(shape=(K.shape(z_mean)[0], latent_dim),
-                              mean=0., stddev=0.1)
-    return z_mean + K.exp(z_log_sigma) * epsilon
-
-z = layers.Lambda(sampling)([z_mean, z_log_sigma])
-
 original_dim = 45
 intermediate_dim = 40
 latent_dim = 36
@@ -21,6 +12,14 @@ inputs = keras.Input(shape=(original_dim,))
 h = layers.Dense(intermediate_dim, activation='relu')(inputs)
 z_mean = layers.Dense(latent_dim)(h)
 z_log_sigma = layers.Dense(latent_dim)(h)
+
+def sampling(args):
+    z_mean, z_log_sigma = args
+    epsilon = K.random_normal(shape=(K.shape(z_mean)[0], latent_dim),
+                              mean=0., stddev=0.1)
+    return z_mean + K.exp(z_log_sigma) * epsilon
+
+z = layers.Lambda(sampling)([z_mean, z_log_sigma])
 
 # Create encoder
 encoder = keras.Model(inputs, [z_mean, z_log_sigma, z], name='encoder')
