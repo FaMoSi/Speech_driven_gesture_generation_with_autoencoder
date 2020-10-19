@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 from matplotlib import cm
 
 from keras.models import Sequential
-from keras.layers import GlobalAveragePooling2D, Dense, Flatten, Lambda, MaxPooling2D, Conv1D, Lambda, Dropout
+from keras.layers import GlobalAveragePooling2D, Dense, Flatten, Lambda, MaxPooling2D, Conv2D, Lambda, Dropout
 from keras.layers import Dense, Activation, Dropout
 from keras.layers.recurrent import SimpleRNN, LSTM, GRU
 from keras.optimizers import SGD, Adam
@@ -90,22 +90,22 @@ def train_CNN(model_file):
     model = Sequential()
 
     # CNN 
-    model.add(TimeDistributed(Conv1D(24, (5)), input_shape=(N_CONTEXT, N_INPUT, 1)))
+    model.add(TimeDistributed(Conv2D(24, (5)), input_shape=(N_CONTEXT, N_INPUT, 1)))
     model.add(BatchNormalization())
     model.add(Activation('relu'))
     model.add(Dropout(0.1))
     
-    model.add(TimeDistributed(Conv1D(36, (5))))
+    model.add(TimeDistributed(Conv2D(36, (5))))
     model.add(BatchNormalization())
     model.add(Activation('relu'))
     model.add(Dropout(0.1))
     
-    model.add(TimeDistributed(Conv1D(48, (3))))
+    model.add(TimeDistributed(Conv2D(48, (3))))
     model.add(BatchNormalization())
     model.add(Activation('relu'))
     model.add(Dropout(0.1))
 
-    model.add(TimeDistributed(Conv1D(64, (3))))
+    model.add(TimeDistributed(Conv2D(64, (3))))
     model.add(BatchNormalization())
     model.add(Activation('relu'))
     model.add(Dropout(0.1))
