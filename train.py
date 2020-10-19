@@ -61,15 +61,6 @@ def train_CNN(model_file):
 
     # Get the data
     X = np.load(DATA_DIR + '/X_train.npy')
-    print(X.shape)
-
-    fig, ax = plt.subplots()
-    cax = ax.imshow(X, interpolation='nearest', cmap=cm.coolwarm, origin='lower')
-    ax.set_title('MFCC')
-
-    plt.show()
-
-    exit(1)
 
     if ENCODED:
 
@@ -93,7 +84,7 @@ def train_CNN(model_file):
     # Define Keras model
 
     model = Sequential()
-    model.add(TimeDistributed(Conv2D(24, (5, 5)), input_shape=(N_CONTEXT, N_INPUT)))   
+    model.add(TimeDistributed(Conv2D(24, (5, 5)), input_shape=(N_CONTEXT, N_INPUT, 1)))   
     model.add(BatchNormalization())
     model.add(Activation('relu'))
     model.add(Dropout(0.1))
