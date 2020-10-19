@@ -78,13 +78,13 @@ def train_CNN(model_file):
     N_train = int(len(X)*0.9)
     N_validation = len(X) - N_train
 
-    X = X.reshape(1, X.shape[0], N_CONTEXT, N_INPUT)
+    X = X.reshape(X.shape[0], N_CONTEXT, N_INPUT, 1)
 
     # Split on training and validation
     X_train, X_validation, Y_train, Y_validation = train_test_split(X, Y, test_size=N_validation)
 
-    print(X.shape)
-    print(X_train.shape)
+    print(Y.shape)
+    print(Y_train.shape)
 
     exit(1)
 
