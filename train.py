@@ -86,27 +86,27 @@ def train_CNN(model_file):
     model = Sequential()
 
     # CNN 
-    model.add(TimeDistributed(Conv1D(24, (5, 5))), input_shape=(N_CONTEXT, N_INPUT))
+    model.add(TimeDistributed(Conv1D(24, (5))), input_shape=(N_CONTEXT, N_INPUT))
     model.add(BatchNormalization())
     model.add(Activation('relu'))
     model.add(Dropout(0.1))
     
-    model.add(TimeDistributed(Conv1D(36, (5, 5))))
+    model.add(TimeDistributed(Conv1D(36, (5))))
     model.add(BatchNormalization())
     model.add(Activation('relu'))
     model.add(Dropout(0.1))
     
-    model.add(TimeDistributed(Conv1D(48, (5, 5))))
+    model.add(TimeDistributed(Conv1D(48, (5))))
     model.add(BatchNormalization())
     model.add(Activation('relu'))
     model.add(Dropout(0.1))
 
-    model.add(TimeDistributed(Conv1D(64, (3, 3))))
+    model.add(TimeDistributed(Conv1D(64, (3))))
     model.add(BatchNormalization())
     model.add(Activation('relu'))
     model.add(Dropout(0.1))
 
-    model.add(TimeDistributed(Conv1D(64, (3, 3))))
+    model.add(TimeDistributed(Conv1D(64, (3))))
     model.add(BatchNormalization())
     model.add(Activation('relu'))
     model.add(Dropout(0.1))
@@ -176,9 +176,6 @@ def train(model_file):
     X_train, X_validation, Y_train, Y_validation = train_test_split(X, Y, test_size=N_validation)
 
     # Define Keras model
-
-    print(X_train.shape)
-    exit(1)
     model = Sequential()
     model.add(TimeDistributed(Dense(N_HIDDEN), input_shape=(N_CONTEXT, N_INPUT)))
     model.add(BatchNormalization())
