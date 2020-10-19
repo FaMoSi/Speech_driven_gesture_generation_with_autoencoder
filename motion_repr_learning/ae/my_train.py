@@ -2,6 +2,7 @@ import Keras
 from keras import layers
 from keras.callbacks import TensorBoard
 from keras import backend as K
+import utils.utils as ut
 
 
 def sampling(args):
@@ -49,9 +50,9 @@ vae.summary()
 check_params()
 
 # Get the data
-DATA_DIR = sys.argv[1]
+DATA_DIR = 'data_dir/'
 train_normalized_data, train_data, test_normalized_data, test_data, dev_normalized_data, \
-max_val, mean_pose = prepare_motion_data(DATA_DIR)
+max_val, mean_pose = ut.prepare_motion_data(DATA_DIR)
 
 vae.fit(train_data, train_data,
         epochs=20,
