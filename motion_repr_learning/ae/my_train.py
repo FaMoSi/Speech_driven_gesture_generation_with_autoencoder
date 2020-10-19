@@ -41,15 +41,15 @@ outputs = decoder(encoder(inputs)[2])
 vae = keras.Model(inputs, outputs, name='vae_mlp')
 
 # Compute VAE loss
-def my_vae_loss(y_true, y_pred):
-    reconstruction_loss = keras.losses.mse(inputs, outputs)
-    reconstruction_loss *= original_dim
-    kl_loss = 1 + z_log_sigma - K.square(z_mean) - K.exp(z_log_sigma)
-    kl_loss = K.sum(kl_loss, axis=-1)
-    kl_loss *= -0.5
-    vae_loss = K.mean(reconstruction_loss + kl_loss)
 
-vae.add_loss(my_vae_loss)
+reconstruction_loss = keras.losses.mse(inputs, outputs)
+reconstruction_loss *= original_dim
+kl_loss = 1 + z_log_sigma - K.square(z_mean) - K.exp(z_log_sigma)
+kl_loss = K.sum(kl_loss, axis=-1)
+kl_loss *= -0.5
+vae_loss = K.mean(reconstruction_loss + kl_loss)
+
+vae.add_loss(vae_loss)
 vae.compile(optimizer='adam')
 
 vae.summary()
