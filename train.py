@@ -60,8 +60,14 @@ def train_CNN(model_file):
 
     # Get the data
     X = np.load(DATA_DIR + '/X_train.npy')
-    plt.plot(mfcc_feat)
     print(X.shape)
+
+    fig, ax = plt.subplots()
+    cax = ax.imshow(X, interpolation='nearest', cmap=cm.coolwarm, origin='lower')
+    ax.set_title('MFCC')
+
+    plt.show()
+
     exit(1)
 
     if ENCODED:
