@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 from matplotlib import cm
 
 from keras.models import Sequential
-from keras.layers import GlobalAveragePooling2D, Dense, Flatten, Lambda, MaxPooling2D, Conv2D, Lambda, Dropout
+from keras.layers import GlobalAveragePooling2D, Dense, Flatten, Lambda, MaxPooling2D, Conv1D, Lambda, Dropout
 from keras.layers import Dense, Activation, Dropout
 from keras.layers.recurrent import SimpleRNN, LSTM, GRU
 from keras.optimizers import SGD, Adam
@@ -84,43 +84,29 @@ def train_CNN(model_file):
     # Define Keras model
 
     model = Sequential()
-    model.add(TimeDistributed(Dense(N_HIDDEN), input_shape=(N_CONTEXT, N_INPUT)))
-    model.add(BatchNormalization())
-    model.add(Activation('relu'))
-    model.add(Dropout(0.1))
-    
-    model.add(TimeDistributed(Dense(N_HIDDEN)))
-    model.add(BatchNormalization())
-    model.add(Activation('relu'))
-    model.add(Dropout(0.1))
-    
-    model.add(TimeDistributed(Dense(N_HIDDEN)))
-    model.add(BatchNormalization())
-    model.add(Activation('relu'))
-    model.add(Dropout(0.1))
 
     # CNN 
-    model.add(TimeDistributed(Conv2D(24, (5, 5), strides=(1, 1))))
+    model.add(TimeDistributed(Conv1D(24, (5, 5))), input_shape=(N_CONTEXT, N_INPUT))
     model.add(BatchNormalization())
     model.add(Activation('relu'))
     model.add(Dropout(0.1))
     
-    model.add(TimeDistributed(Conv2D(36, (5, 5), strides=(1, 1))))
+    model.add(TimeDistributed(Conv1D(36, (5, 5))))
     model.add(BatchNormalization())
     model.add(Activation('relu'))
     model.add(Dropout(0.1))
     
-    model.add(TimeDistributed(Conv2D(48, (5, 5), strides=(1, 1))))
+    model.add(TimeDistributed(Conv1D(48, (5, 5))))
     model.add(BatchNormalization())
     model.add(Activation('relu'))
     model.add(Dropout(0.1))
 
-    model.add(TimeDistributed(Conv2D(64, (3, 3), strides=(1, 1))))
+    model.add(TimeDistributed(Conv1D(64, (3, 3))))
     model.add(BatchNormalization())
     model.add(Activation('relu'))
     model.add(Dropout(0.1))
 
-    model.add(TimeDistributed(Conv2D(64, (3, 3), strides=(1, 1))))
+    model.add(TimeDistributed(Conv1D(64, (3, 3))))
     model.add(BatchNormalization())
     model.add(Activation('relu'))
     model.add(Dropout(0.1))
