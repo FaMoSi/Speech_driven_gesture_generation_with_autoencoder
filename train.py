@@ -90,7 +90,8 @@ def train_CNN(model_file):
     model = Sequential()
 
     # CNN 
-    model.add(TimeDistributed(Conv1D(24, (7)), input_shape=(N_CONTEXT, N_INPUT, 1)))
+    model.add(TimeDistributed(Conv1D(24, (5)), input_shape=(N_CONTEXT, N_INPUT, 1)))
+    model.add(BatchNormalization())
     model.add(Activation('relu'))
     model.add(Dropout(0.1))
     
@@ -99,7 +100,7 @@ def train_CNN(model_file):
     model.add(Activation('relu'))
     model.add(Dropout(0.1))
     
-    model.add(TimeDistributed(Conv1D(48, (5))))
+    model.add(TimeDistributed(Conv1D(48, (3))))
     model.add(BatchNormalization())
     model.add(Activation('relu'))
     model.add(Dropout(0.1))
