@@ -126,7 +126,7 @@ def train_CNN(model_file):
     model.add(Activation('relu'))
     model.add(Dropout(0.1))
     
-    model.add(Dense(N_OUTPUT), output_shape=(N_OUTPUT, 1))
+    model.add(Dense(N_OUTPUT))
     model.add(Activation('linear'))
 
     print(model.summary())
