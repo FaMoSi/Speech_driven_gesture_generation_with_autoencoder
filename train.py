@@ -84,7 +84,9 @@ def train_CNN(model_file):
     X_train, X_validation, Y_train, Y_validation = train_test_split(X, Y, test_size=N_validation)
 
     print(X.shape)
-    print(X_trian.shape)
+    print(X_train.shape)
+
+    exit(1)
 
     # Define Keras model
     model = Sequential()
