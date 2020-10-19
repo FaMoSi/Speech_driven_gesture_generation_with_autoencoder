@@ -78,13 +78,15 @@ def train_CNN(model_file):
     N_train = int(len(X)*0.9)
     N_validation = len(X) - N_train
 
-    X = X.reshape(X.shape[0], N_CONTEXT, N_INPUT, 1)
-    Y = Y.reshape(X.shape[0], N_OUTPUT, 1)
+    
+    # Y = Y.reshape(X.shape[0], N_OUTPUT, 1)
 
     # Split on training and validation
     X_train, X_validation, Y_train, Y_validation = train_test_split(X, Y, test_size=N_validation)
-
-
+    
+    X_train = X_train.reshape(X_train.shape[0], N_CONTEXT, N_INPUT, 1)
+    X_validation = X_validation.reshape(X_validation.shape[0], N_CONTEXT, N_INPUT, 1)
+    
     # Define Keras model
     model = Sequential()
     model.add(TimeDistributed(Dense(N_HIDDEN), input_shape=(N_CONTEXT, N_INPUT, 1)))
