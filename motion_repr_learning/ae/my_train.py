@@ -49,7 +49,8 @@ def my_vae_loss(y_true, y_pred):
     kl_loss *= -0.5
     vae_loss = K.mean(reconstruction_loss + kl_loss)
 
-vae.compile(optimizer='adam', loss=my_vae_loss)
+vae.add_loss(my_vae_loss)
+vae.compile(optimizer='adam')
 
 vae.summary()
 
