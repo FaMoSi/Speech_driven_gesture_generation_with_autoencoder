@@ -7,6 +7,7 @@ This script should be used to train the model, as described in READ.me
 import sys
 import numpy as np
 from sklearn.model_selection import train_test_split
+import matplotlib.pyplot as plt
 
 from keras.models import Sequential
 from keras.layers import GlobalAveragePooling2D, Dense, Flatten, Lambda, MaxPooling2D, Conv2D, Lambda, Dropout
@@ -59,7 +60,7 @@ def train_CNN(model_file):
 
     # Get the data
     X = np.load(DATA_DIR + '/X_train.npy')
-
+    plt.plot(mfcc_feat)
     print(X.shape)
     exit(1)
 
