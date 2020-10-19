@@ -60,6 +60,9 @@ def train_CNN(model_file):
     # Get the data
     X = np.load(DATA_DIR + '/X_train.npy')
 
+    print(X.shape)
+    exit(1)
+
     if ENCODED:
 
         # If we learn speech-representation mapping we use encoded motion as output
