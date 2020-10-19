@@ -101,17 +101,17 @@ def train_CNN(model_file):
 
 
     # CNN 
-    model.add(TimeDistributed(Conv2D(24, (5, 5), strides=(2, 2))))
+    model.add(TimeDistributed(Conv2D(24, (5, 5), strides=(1, 1))))
     model.add(BatchNormalization())
     model.add(Activation('relu'))
     model.add(Dropout(0.1))
     
-    model.add(TimeDistributed(Conv2D(36, (5, 5), strides=(2, 2))))
+    model.add(TimeDistributed(Conv2D(36, (5, 5), strides=(1, 1))))
     model.add(BatchNormalization())
     model.add(Activation('relu'))
     model.add(Dropout(0.1))
     
-    model.add(TimeDistributed(Conv2D(48, (5, 5), strides=(2, 2))))
+    model.add(TimeDistributed(Conv2D(48, (5, 5), strides=(1, 1))))
     model.add(BatchNormalization())
     model.add(Activation('relu'))
     model.add(Dropout(0.1))
