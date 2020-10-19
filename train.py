@@ -83,8 +83,10 @@ def train_CNN(model_file):
     # Split on training and validation
     X_train, X_validation, Y_train, Y_validation = train_test_split(X, Y, test_size=N_validation)
 
-    # Define Keras model
+    print(X.shape)
+    print(X_trian.shape)
 
+    # Define Keras model
     model = Sequential()
     model.add(TimeDistributed(Dense(N_HIDDEN), input_shape=(1, N_CONTEXT, N_INPUT)))
     model.add(BatchNormalization())
