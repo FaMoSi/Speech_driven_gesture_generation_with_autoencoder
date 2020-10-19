@@ -45,9 +45,6 @@ vae.compile(optimizer='adam')
 
 vae.summary()
 
-# Check parameters
-check_params()
-
 # Get the data
 DATA_DIR = 'data_dir/'
 train_normalized_data, train_data, test_normalized_data, test_data, dev_normalized_data, \
