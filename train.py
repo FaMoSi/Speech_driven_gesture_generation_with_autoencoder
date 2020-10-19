@@ -81,7 +81,6 @@ def train_CNN(model_file):
     X = X.reshape(X.shape[0], N_CONTEXT, N_INPUT, 1)
 
     print(Y.shape)
-    print(Y_train.shape)
     exit(1)
 
 
