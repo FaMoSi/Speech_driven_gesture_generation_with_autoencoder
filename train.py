@@ -78,7 +78,6 @@ def train_CNN(model_file):
     N_train = int(len(X)*0.9)
     N_validation = len(X) - N_train
 
-    
     # Y = Y.reshape(X.shape[0], N_OUTPUT, 1)
 
     # Split on training and validation
@@ -89,13 +88,9 @@ def train_CNN(model_file):
     
     # Define Keras model
     model = Sequential()
-    model.add(TimeDistributed(Dense(N_HIDDEN), input_shape=(N_CONTEXT, N_INPUT, 1)))
-    model.add(BatchNormalization())
-    model.add(Activation('relu'))
-    model.add(Dropout(0.1))
 
     # CNN 
-    model.add(TimeDistributed(Conv1D(24, (5))))
+    model.add(TimeDistributed(Conv1D(24, (7)), input_shape=(N_CONTEXT, N_INPUT, 1)))
     model.add(Activation('relu'))
     model.add(Dropout(0.1))
     
@@ -105,11 +100,6 @@ def train_CNN(model_file):
     model.add(Dropout(0.1))
     
     model.add(TimeDistributed(Conv1D(48, (5))))
-    model.add(BatchNormalization())
-    model.add(Activation('relu'))
-    model.add(Dropout(0.1))
-
-    model.add(TimeDistributed(Conv1D(64, (3))))
     model.add(BatchNormalization())
     model.add(Activation('relu'))
     model.add(Dropout(0.1))
