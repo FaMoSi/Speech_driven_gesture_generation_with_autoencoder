@@ -84,7 +84,7 @@ def train_CNN(model_file):
     # Define Keras model
 
     model = Sequential()
-    model.add(TimeDistributed(Dense(N_HIDDEN), input_shape=(479973, N_CONTEXT, N_INPUT)))
+    model.add(TimeDistributed(Dense(N_HIDDEN), input_shape=(N_CONTEXT, N_INPUT)))
     model.add(BatchNormalization())
     model.add(Activation('relu'))
     model.add(Dropout(0.1))
@@ -191,6 +191,8 @@ def train(model_file):
 
     # Define Keras model
 
+    print(X_train.shape)
+    exit(1)
     model = Sequential()
     model.add(TimeDistributed(Dense(N_HIDDEN), input_shape=(N_CONTEXT, N_INPUT)))
     model.add(BatchNormalization())
@@ -236,4 +238,4 @@ def train(model_file):
 
 
 if __name__ == "__main__":
-    train_CNN(sys.argv[1])
+    train(sys.argv[1])
