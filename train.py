@@ -10,7 +10,7 @@ from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 from matplotlib import cm
 
-from keras.models import Sequential
+from keras.models import Sequential, load_model
 from keras.layers import GlobalAveragePooling2D, Dense, Flatten, Lambda, MaxPooling2D, Conv1D, Lambda, Dropout
 from keras.layers import Dense, Activation, Dropout
 from keras.layers.recurrent import SimpleRNN, LSTM, GRU
@@ -132,7 +132,7 @@ def train_CNN(model_file):
     callbacks_list = [checkpoint]
 
     if RESTORE:
-        model = new_model.load(model_file)
+        model = load_model(model_file)
 
     hist = model.fit(X_train, Y_train, batch_size=BATCH_SIZE, epochs=EPOCHS, validation_data=(X_validation, Y_validation), callbacks=callbacks_list)
     
