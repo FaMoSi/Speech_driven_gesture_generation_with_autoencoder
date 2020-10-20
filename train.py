@@ -28,6 +28,7 @@ if len(sys.argv) < 6:
         raise ValueError(
            'Not enough paramters! \nUsage : python train.py MODEL_NAME EPOCHS DATA_DIR N_INPUT ENCODE (DIM)')
 ENCODED = sys.argv[5].lower() == 'true'
+RESTORE = sys.argv[6].lower() == 'true'
 
 if ENCODED:
     if len(sys.argv) < 7:
@@ -129,6 +130,10 @@ def train_CNN(model_file):
 
     checkpoint = ModelCheckpoint(model_file, monitor='loss', verbose=1, save_best_only=True)
     callbacks_list = [checkpoint]
+
+    if RESTORE:
+        model = new_model.load(model_file)
+
     hist = model.fit(X_train, Y_train, batch_size=BATCH_SIZE, epochs=EPOCHS, validation_data=(X_validation, Y_validation), callbacks=callbacks_list)
     
     # Save convergence results into an image
