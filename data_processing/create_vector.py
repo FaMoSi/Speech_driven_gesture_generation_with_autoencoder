@@ -241,6 +241,7 @@ def create_vectors(audio_filename, gesture_filename, nodes):
     output_with_context = np.array([])
 
     strides = len(input_vectors)
+    print(strides)
 
     input_vectors = pad_sequence(input_vectors)
 
@@ -254,6 +255,7 @@ def create_vectors(audio_filename, gesture_filename, nodes):
             output_with_context = np.append(output_with_context, output_vectors[i].reshape(1, N_OUTPUT), axis=0)
 
     print("IWC: ", input_with_context.shape)
+    
     exit(1)
     return input_with_context, output_with_context
 
@@ -486,7 +488,7 @@ if __name__ == "__main__":
     f.close()
     # nodes = create_hierarchy_nodes(hierarchy)
     nodes = []
-    create_test_sequences(nodes, 'test')
-    create('test', nodes)
+    # create_test_sequences(nodes, 'test')
+    # create('test', nodes)
     create('dev', nodes)
-    create('train', nodes)
+    # create('train', nodes)
