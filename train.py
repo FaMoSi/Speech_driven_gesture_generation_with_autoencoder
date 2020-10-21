@@ -47,7 +47,7 @@ N_INPUT = int(sys.argv[4])  # Number of input features
 BATCH_SIZE = 2056
 N_HIDDEN = 256
 
-N_CONTEXT = 30 # The number of frames in the context
+N_CONTEXT = 31 # The number of frames in the context
 
 def train_CNN(model_file):
     """
@@ -84,14 +84,14 @@ def train_CNN(model_file):
     # Split on training and validation
     X_train, X_validation, Y_train, Y_validation = train_test_split(X, Y, test_size=N_validation)
     
-    X_train = X_train.reshape(X_train.shape[0], N_CONTEXT, 1, N_INPUT, 1)
-    X_validation = X_validation.reshape(X_validation.shape[0], N_CONTEXT, 1, N_INPUT, 1)
+    X_train = X_train.reshape(X_train.shape[0], 10, 4, N_INPUT, 1)
+    X_validation = X_validation.reshape(X_validation.shape[0], 10, 4, N_INPUT, 1)
     
     # Define Keras model
     model = Sequential()
 
     # CNN 
-    model.add(TimeDistributed(Conv2D(36, (5, 5)), input_shape=(N_CONTEXT, 1, N_INPUT, 1)))
+    model.add(TimeDistributed(Conv2D(36, (5, 5)), input_shape=(10, 4, N_INPUT, 1)))
     model.add(BatchNormalization())
     model.add(Activation('relu'))
 
