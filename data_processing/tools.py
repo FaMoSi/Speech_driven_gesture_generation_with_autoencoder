@@ -272,13 +272,15 @@ def calculate_spectrogram(audio_filename):
         log spectrogram values
     """
 
+    print("AUDIO: ", audio_filename)
+
     DIM = int(64)
 
     audio, sample_rate = librosa.load(audio_filename)
 
-    # Make stereo audio being mono
-    if len(audio.shape) == 2:
-        audio = (audio[:, 0] + audio[:, 1]) / 2
+    # # Make stereo audio being mono
+    # if len(audio.shape) == 2:
+    #     audio = (audio[:, 0] + audio[:, 1]) / 2
 
     spectr = librosa.feature.melspectrogram(audio, sr=sample_rate, #window = scipy.signal.hanning,
                                             hop_length = int(WINDOW_LENGTH* sample_rate / 2),
