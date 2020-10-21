@@ -253,7 +253,7 @@ def create_vectors(audio_filename, gesture_filename, nodes):
             input_with_context = np.append(input_with_context, input_vectors[stride - int(N_CONTEXT/2) : stride + int(N_CONTEXT/2) + 1].reshape(1, N_CONTEXT+1, N_INPUT), axis=0)
             output_with_context = np.append(output_with_context, output_vectors[i].reshape(1, N_OUTPUT), axis=0)
 
-    print("IWC: ", input_with_context)
+    print("IWC: ", input_with_context.shape)
     exit(1)
     return input_with_context, output_with_context
 
