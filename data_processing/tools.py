@@ -284,7 +284,7 @@ def calculate_spectrogram(audio_filename):
                                             hop_length = int(WINDOW_LENGTH* sample_rate / 2),
                                             fmax=7500, fmin=100, n_mels=DIM)
     print("Spect: ", spectr.shape)
-
+    spectr = librosa.power_to_db(spectr, ref=np.max)
     librosa.display.specshow(spectr, y_axis='mel', x_axis='time')
     plt.title('MelSpectogram')
     plt.colorbar(format='%+2.0f dB')
@@ -295,7 +295,7 @@ def calculate_spectrogram(audio_filename):
     # Shift into the log scale
     eps = 1e-10
     log_spectr = np.log(abs(spectr)+eps)
-
+    log_spectr = librosa.power_to_db(log_spectr, ref=np.max)
     librosa.display.specshow(log_spectr, y_axis='mel', x_axis='time')
     plt.title('MelSpectogram')
     plt.colorbar(format='%+2.0f dB')
