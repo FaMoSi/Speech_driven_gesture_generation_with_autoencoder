@@ -236,6 +236,8 @@ def create_vectors(audio_filename, gesture_filename, nodes):
     # Step 3: Align vector length
     input_vectors, output_vectors = shorten(input_vectors, output_vectors)
 
+    print("SHORTEN: ", input_vectors.shape)
+
     # Step 4: Retrieve N_CONTEXT each time, stride one by one
     input_with_context = np.array([])
     output_with_context = np.array([])
