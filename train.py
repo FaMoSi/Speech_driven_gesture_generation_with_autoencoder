@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 from matplotlib import cm
 
 from keras.models import Sequential, load_model
-from keras.layers import GlobalAveragePooling2D, Dense, Flatten, Lambda, MaxPooling2D, Conv2D, Lambda, Dropout
+from keras.layers import GlobalAveragePooling2D, Dense, Flatten, Lambda, MaxPooling1D, Conv1D, Lambda, Dropout
 from keras.layers import Dense, Activation, Dropout
 from keras.layers.recurrent import SimpleRNN, LSTM, GRU
 from keras.optimizers import SGD, Adam
@@ -47,7 +47,7 @@ N_INPUT = int(sys.argv[4])  # Number of input features
 BATCH_SIZE = 2056
 N_HIDDEN = 256
 
-N_CONTEXT = 31 # The number of frames in the context
+N_CONTEXT = 30 + 1  # The number of frames in the context
 
 def train_CNN(model_file):
     """
@@ -84,25 +84,25 @@ def train_CNN(model_file):
     # Split on training and validation
     X_train, X_validation, Y_train, Y_validation = train_test_split(X, Y, test_size=N_validation)
     
-    X_train = X_train.reshape(X_train.shape[0], 10, 4, N_INPUT, 1)
-    X_validation = X_validation.reshape(X_validation.shape[0], 10, 4, N_INPUT, 1)
+    X_train = X_train.reshape(X_train.shape[0], N_CONTEXT, N_INPUT, 1)
+    X_validation = X_validation.reshape(X_validation.shape[0], N_CONTEXT, N_INPUT, 1)
     
     # Define Keras model
     model = Sequential()
 
     # CNN 
-    model.add(TimeDistributed(Conv2D(36, (5, 5)), input_shape=(10, 4, N_INPUT, 1)))
+    model.add(TimeDistributed(Conv1D(36, (5)), input_shape=(N_CONTEXT, N_INPUT, 1)))
     model.add(BatchNormalization())
     model.add(Activation('relu'))
 
-    model.add(TimeDistributed(MaxPooling2D(pool_size=(2, 2))))
+    model.add(TimeDistributed(MaxPooling1D(pool_size=(2))))
     model.add(BatchNormalization())
     
-    model.add(TimeDistributed(Conv2D(12, (5,5))))
+    model.add(TimeDistributed(Conv1D(12, (5))))
     model.add(BatchNormalization())
     model.add(Activation('relu'))
 
-    model.add(TimeDistributed(MaxPooling2D(pool_size=(2, 2))))
+    model.add(TimeDistributed(MaxPooling1D(pool_size=(2))))
     model.add(BatchNormalization())
 
     model.add(TimeDistributed(Flatten()))
