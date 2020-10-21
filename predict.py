@@ -21,7 +21,7 @@ def predict(model_name, input_file, output_file):
 
     """
     model = load_model(model_name)
-    X = np.load(input_file).reshape(3599, 61, 26, 1)
+    X = np.load(input_file).reshape(3599, 31, 64, 1)
 
     predicted = np.array(model.predict(X))
     print(predicted.shape)
