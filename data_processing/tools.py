@@ -283,9 +283,12 @@ def calculate_spectrogram(audio_filename):
     spectr = librosa.feature.melspectrogram(audio, sr=sample_rate, #window = scipy.signal.hanning,
                                             hop_length = int(WINDOW_LENGTH* sample_rate / 2),
                                             fmax=7500, fmin=100, n_mels=DIM)
+    print(spectr.shape)
 
     # Shift into the log scale
     eps = 1e-10
     log_spectr = np.log(abs(spectr)+eps)
+
+    print(np.transpose(log_spectr).shape)
 
     return np.transpose(log_spectr)
