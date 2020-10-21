@@ -15,7 +15,7 @@ from tools import *
 
 N_OUTPUT = 45 # Number of gesture features (position)
 WINDOW_LENGTH = 50 # in miliseconds
-FEATURES = "MFCC"
+FEATURES = "Spectro"
 
 if FEATURES == "MFCC":
     N_INPUT = 26 # Number of MFCC features
@@ -485,6 +485,6 @@ if __name__ == "__main__":
     # nodes = create_hierarchy_nodes(hierarchy)
     nodes = []
     create_test_sequences(nodes, 'test')
-    create('test', nodes)
+    # create('test', nodes)
     create('dev', nodes)
-    create('train', nodes)
+    # create('train', nodes)
