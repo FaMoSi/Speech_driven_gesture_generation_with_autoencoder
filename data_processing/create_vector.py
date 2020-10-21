@@ -257,6 +257,14 @@ def create_vectors(audio_filename, gesture_filename, nodes):
             output_with_context = np.append(output_with_context, output_vectors[i].reshape(1, N_OUTPUT), axis=0)
 
     print("IWC: ", input_with_context.shape)
+
+    spectr = librosa.power_to_db(input_with_context[0], ref=np.max)
+    librosa.display.specshow(input_with_context[0], y_axis='mel', x_axis='time')
+    plt.title('MelSpectogram')
+    plt.colorbar(format='%+2.0f dB')
+
+    plt.subplot(111)
+    plt.show()
     
     exit(1)
     return input_with_context, output_with_context
