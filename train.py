@@ -83,15 +83,15 @@ def train_CNN(model_file):
 
     # Split on training and validation
     X_train, X_validation, Y_train, Y_validation = train_test_split(X, Y, test_size=N_validation)
-    
-    X_train = X_train.reshape(X_train.shape[0], 10, N_CONTEXT/10, N_INPUT, 1)
-    X_validation = X_validation.reshape(X_validation.shape[0], 10, N_CONTEXT/10, N_INPUT, 1)
+
+    X_train = X_train.reshape(X_train.shape[0], 10, N_CONTEXT//10), N_INPUT, 1)
+    X_validation = X_validation.reshape(X_validation.shape[0], 10, N_CONTEXT//10, N_INPUT, 1)
     
     # Define Keras model
     model = Sequential()
 
     # CNN 
-    model.add(TimeDistributed(Conv2D(36, (5, 5)), input_shape=(10, N_CONTEXT/10, N_INPUT, 1)))
+    model.add(TimeDistributed(Conv2D(36, (5, 5)), input_shape=(10, N_CONTEXT//10, N_INPUT, 1)))
     model.add(BatchNormalization())
     model.add(Activation('relu'))
 
