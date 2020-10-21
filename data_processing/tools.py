@@ -285,9 +285,23 @@ def calculate_spectrogram(audio_filename):
                                             fmax=7500, fmin=100, n_mels=DIM)
     print("Spect: ", spectr.shape)
 
+    librosa.display.specshow(spectr, y_axis='mel', x_axis='time')
+    plt.title('MelSpectogram')
+    plt.colorbar(format='%+2.0f dB')
+
+    plt.subplot(111)
+    plt.show()
+
     # Shift into the log scale
     eps = 1e-10
     log_spectr = np.log(abs(spectr)+eps)
+
+    librosa.display.specshow(log_spectr, y_axis='mel', x_axis='time')
+    plt.title('MelSpectogram')
+    plt.colorbar(format='%+2.0f dB')
+
+    plt.subplot(111)
+    plt.show()
 
     print("TRANSPOSE: ", np.transpose(log_spectr).shape)
 
