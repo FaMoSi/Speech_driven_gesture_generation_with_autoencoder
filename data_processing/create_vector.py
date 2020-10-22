@@ -241,7 +241,6 @@ def create_vectors(audio_filename, gesture_filename, nodes):
     output_with_context = np.array([])
 
     strides = len(input_vectors)
-    print(strides)
 
     input_vectors = pad_sequence(input_vectors)
 
