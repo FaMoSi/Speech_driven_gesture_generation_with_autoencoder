@@ -17,7 +17,7 @@ from keras.layers.recurrent import SimpleRNN, LSTM, GRU
 from keras.optimizers import SGD, Adam
 from keras.layers.wrappers import TimeDistributed, Bidirectional
 from keras.layers.normalization import BatchNormalization
-from keras.callbacks import ModelCheckpoint
+from keras.callbacks import ModelCheckpoint, EarlyStopping
 
 import matplotlib
 matplotlib.use('Agg')
