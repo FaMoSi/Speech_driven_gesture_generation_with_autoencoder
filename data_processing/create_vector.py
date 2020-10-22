@@ -494,7 +494,7 @@ if __name__ == "__main__":
     f.close()
     # nodes = create_hierarchy_nodes(hierarchy)
     nodes = []
-    # create_test_sequences(nodes, 'test')
-    # create('test', nodes)
+    create_test_sequences(nodes, 'test')
+    create('test', nodes)
     create('dev', nodes)
-    # create('train', nodes)
+    create('train', nodes)
