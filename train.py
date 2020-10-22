@@ -127,8 +127,9 @@ def train_CNN(model_file):
     optimizer = Adam(lr=0.0001, beta_1=0.9, beta_2=0.999)
     model.compile(loss='mean_squared_error', optimizer=optimizer)
 
-    checkpoint = ModelCheckpoint(model_file, monitor='loss', verbose=1, save_best_only=True)
-    callbacks_list = [checkpoint]
+    es = EarlyStopping(monitor='val_loss', verbose=1, patience=10)
+    mc = ModelCheckpoint(model_file, monitor='loss', verbose=1, save_best_only=True)
+    callbacks_list = [es, mc]
 
     if RESTORE:
         model = load_model(model_file)
