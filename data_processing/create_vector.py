@@ -236,8 +236,6 @@ def create_vectors(audio_filename, gesture_filename, nodes):
     # Step 3: Align vector length
     input_vectors, output_vectors = shorten(input_vectors, output_vectors)
 
-    print("SHORTEN: ", input_vectors.shape)
-
     # Step 4: Retrieve N_CONTEXT each time, stride one by one
     input_with_context = np.array([])
     output_with_context = np.array([])
@@ -256,17 +254,15 @@ def create_vectors(audio_filename, gesture_filename, nodes):
             input_with_context = np.append(input_with_context, input_vectors[stride - int(N_CONTEXT/2) : stride + int(N_CONTEXT/2) + 1].reshape(1, N_CONTEXT+1, N_INPUT), axis=0)
             output_with_context = np.append(output_with_context, output_vectors[i].reshape(1, N_OUTPUT), axis=0)
 
-    print("IWC: ", input_with_context.shape)
-
     spectr = librosa.power_to_db(input_with_context[0], ref=np.max)
-    librosa.display.specshow(input_with_context[0], y_axis='mel', x_axis='time')
-    plt.title('MelSpectogram')
-    plt.colorbar(format='%+2.0f dB')
+    # librosa.display.specshow(input_with_context[0], y_axis='mel', x_axis='time')
+    # plt.title('MelSpectogram')
+    # plt.colorbar(format='%+2.0f dB')
 
-    plt.subplot(111)
-    plt.show()
+    # plt.subplot(111)
+    # plt.show()
     
-    exit(1)
+    # exit(1)
     return input_with_context, output_with_context
 
 
