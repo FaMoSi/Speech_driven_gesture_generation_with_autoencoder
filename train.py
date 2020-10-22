@@ -47,7 +47,7 @@ N_INPUT = int(sys.argv[4])  # Number of input features
 BATCH_SIZE = 2056
 N_HIDDEN = 256
 
-N_CONTEXT = 30 + 1  # The number of frames in the context
+N_CONTEXT = 60 + 1  # The number of frames in the context
 
 def train_CNN(model_file):
     """
