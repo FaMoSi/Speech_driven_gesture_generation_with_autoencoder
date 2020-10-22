@@ -272,39 +272,20 @@ def calculate_spectrogram(audio_filename):
         log spectrogram values
     """
 
-    print("AUDIO: ", audio_filename)
-
     DIM = int(64)
 
     audio, sample_rate = librosa.load(audio_filename)
 
-    # # Make stereo audio being mono
-    # if len(audio.shape) == 2:
-    #     audio = (audio[:, 0] + audio[:, 1]) / 2
+    # Make stereo audio being mono
+    if len(audio.shape) == 2:
+        audio = (audio[:, 0] + audio[:, 1]) / 2
 
     spectr = librosa.feature.melspectrogram(audio, sr=sample_rate, #window = scipy.signal.hanning,
                                             hop_length = int(WINDOW_LENGTH* sample_rate / 2),
                                             fmax=7500, fmin=100, n_mels=DIM)
-    print("Spect: ", spectr.shape)
-    spectr = librosa.power_to_db(spectr, ref=np.max)
-    librosa.display.specshow(spectr, y_axis='mel', x_axis='time')
-    plt.title('MelSpectogram')
-    plt.colorbar(format='%+2.0f dB')
-
-    plt.subplot(111)
-    plt.show()
 
     # Shift into the log scale
     eps = 1e-10
     log_spectr = np.log(abs(spectr)+eps)
-    log_spectr = librosa.power_to_db(log_spectr, ref=np.max)
-    librosa.display.specshow(log_spectr, y_axis='mel', x_axis='time')
-    plt.title('MelSpectogram')
-    plt.colorbar(format='%+2.0f dB')
-
-    plt.subplot(111)
-    plt.show()
-
-    print("TRANSPOSE: ", np.transpose(log_spectr).shape)
 
     return np.transpose(log_spectr)
