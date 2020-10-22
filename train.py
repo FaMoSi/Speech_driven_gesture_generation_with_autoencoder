@@ -84,30 +84,30 @@ def train_CNN(model_file):
     # Split on training and validation
     X_train, X_validation, Y_train, Y_validation = train_test_split(X, Y, test_size=N_validation)
     
-    X_train = X_train.reshape(X_train.shape[0], N_CONTEXT, N_INPUT, 1, 1)
-    X_validation = X_validation.reshape(X_validation.shape[0], N_CONTEXT, N_INPUT, 1, 1)
+    X_train = X_train.reshape(X_train.shape[0], N_CONTEXT, N_INPUT, 1)
+    X_validation = X_validation.reshape(X_validation.shape[0], N_CONTEXT, N_INPUT, 1)
     
     # Define Keras model
     model = Sequential()
 
     # CNN
-    model.add(TimeDistributed(Conv2D(36, (5, 5)), input_shape=(N_CONTEXT, N_INPUT, 1, 1)))
+    model.add(TimeDistributed(Conv1D(36, (5)), input_shape=(N_CONTEXT, N_INPUT, 1)))
     model.add(BatchNormalization())
     model.add(Activation('relu'))
     model.add(Dropout(0.1))
 
-    model.add(TimeDistributed(MaxPooling2D(pool_size=(2, 2))))
-    model.add(BatchNormalization())
-    model.add(Dropout(0.1))
+    # model.add(TimeDistributed(MaxPooling1D(pool_size=(2))))
+    # model.add(BatchNormalization())
+    # model.add(Dropout(0.1))
     
-    model.add(TimeDistributed(Conv1D(12, (3, 3))))
+    model.add(TimeDistributed(Conv1D(26, (3))))
     model.add(BatchNormalization())
     model.add(Activation('relu'))
     model.add(Dropout(0.1))
 
-    model.add(TimeDistributed(MaxPooling2D(pool_size=(2, 2))))
-    model.add(BatchNormalization())
-    model.add(Dropout(0.1))
+    # model.add(TimeDistributed(MaxPooling1D(pool_size=(2))))
+    # model.add(BatchNormalization())
+    # model.add(Dropout(0.1))
 
     model.add(TimeDistributed(Flatten()))
     model.add(BatchNormalization())
