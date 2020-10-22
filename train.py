@@ -89,36 +89,44 @@ def train_CNN(model_file):
     
     # Define Keras model
     model = Sequential()
-
-    # CNN 
-    model.add(TimeDistributed(Conv1D(36, (5)), input_shape=(N_CONTEXT, N_INPUT, 1)))
+    model.add(TimeDistributed(Dense(N_HIDDEN), input_shape=(N_CONTEXT, N_INPUT, 1)))
     model.add(BatchNormalization())
     model.add(Activation('relu'))
+    model.add(Dropout(0.1))
+
+    # CNN
+    model.add(TimeDistributed(Conv1D(26, (5))))
+    model.add(BatchNormalization())
+    model.add(Activation('relu'))
+    model.add(Dropout(0.1))
 
     model.add(TimeDistributed(MaxPooling1D(pool_size=(2))))
     model.add(BatchNormalization())
+    model.add(Dropout(0.1))
     
-    model.add(TimeDistributed(Conv1D(12, (5))))
-    model.add(BatchNormalization())
-    model.add(Activation('relu'))
+    # model.add(TimeDistributed(Conv1D(12, (5))))
+    # model.add(BatchNormalization())
+    # model.add(Activation('relu'))
 
-    model.add(TimeDistributed(MaxPooling1D(pool_size=(2))))
-    model.add(BatchNormalization())
+    # model.add(TimeDistributed(MaxPooling1D(pool_size=(2))))
+    # model.add(BatchNormalization())
 
     model.add(TimeDistributed(Flatten()))
     model.add(BatchNormalization())
+    model.add(Dropout(0.1))
 
     # GRU
     model.add(GRU(N_HIDDEN, return_sequences=False))
     model.add(BatchNormalization())
     model.add(Activation('relu'))
+    model.add(Dropout(0.1))
     
     model.add(Dense(N_OUTPUT))
     model.add(Activation('linear'))
 
     print(model.summary())
 
-    optimizer = Adam(lr=0.001, beta_1=0.9, beta_2=0.999)
+    optimizer = Adam(lr=0.0001, beta_1=0.9, beta_2=0.999)
     model.compile(loss='mean_squared_error', optimizer=optimizer)
 
     checkpoint = ModelCheckpoint(model_file, monitor='loss', verbose=1, save_best_only=True)
