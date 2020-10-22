@@ -109,7 +109,7 @@ def train_CNN(model_file):
     model.add(BatchNormalization())
     model.add(Dropout(0.1))
 
-    model.add(TimeDistributed(Dense(N_HIDDEN)))
+    model.add(TimeDistributed(Flatten()))
     model.add(BatchNormalization())
     model.add(Dropout(0.1))
 
