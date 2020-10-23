@@ -124,7 +124,7 @@ def train_CNN(model_file):
 
     print(model.summary())
 
-    optimizer = Adam(lr=0.0001, beta_1=0.9, beta_2=0.999)
+    optimizer = Adam(lr=0.001, beta_1=0.9, beta_2=0.999)
     model.compile(loss='mean_squared_error', optimizer=optimizer)
 
     es = EarlyStopping(monitor='val_loss', verbose=1, patience=10)
