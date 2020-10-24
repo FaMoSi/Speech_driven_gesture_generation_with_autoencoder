@@ -15,7 +15,7 @@ from tools import *
 
 N_OUTPUT = 45 # Number of gesture features (position)
 WINDOW_LENGTH = 50 # in miliseconds
-FEATURES = "Spectro"
+FEATURES = "MFCC"
 
 if FEATURES == "MFCC":
     N_INPUT = 26 # Number of MFCC features
