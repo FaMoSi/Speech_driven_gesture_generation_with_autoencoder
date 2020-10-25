@@ -225,4 +225,4 @@ def train(model_file):
 
 
 if __name__ == "__main__":
-    train_CNN(sys.argv[1])
+    train(sys.argv[1])
