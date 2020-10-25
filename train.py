@@ -96,18 +96,18 @@ def train_CNN(model_file):
     model.add(Activation('relu'))
     model.add(Dropout(0.1))
 
-    # model.add(TimeDistributed(MaxPooling1D(pool_size=(2))))
-    # model.add(BatchNormalization())
-    # model.add(Dropout(0.1))
+    model.add(TimeDistributed(MaxPooling1D(pool_size=(2))))
+    model.add(BatchNormalization())
+    model.add(Dropout(0.1))
     
     model.add(TimeDistributed(Conv1D(26, (3))))
     model.add(BatchNormalization())
     model.add(Activation('relu'))
     model.add(Dropout(0.1))
 
-    # model.add(TimeDistributed(MaxPooling1D(pool_size=(2))))
-    # model.add(BatchNormalization())
-    # model.add(Dropout(0.1))
+    model.add(TimeDistributed(MaxPooling1D(pool_size=(2))))
+    model.add(BatchNormalization())
+    model.add(Dropout(0.1))
 
     model.add(TimeDistributed(Flatten()))
     model.add(BatchNormalization())
